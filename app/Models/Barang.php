@@ -10,4 +10,9 @@ class Barang extends Model
     use HasFactory;
     protected $table = 'barangs';
     protected $guarded = [];
+
+    public function transaksi_pembelian_barang()
+    {
+        return $this->hasMany(TransaksiPembelianBarang::class);
+    }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BarangController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,6 +38,10 @@ Route::get('/not-found', function () {
     return view('not_found');
 });
 
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Menampilkan view dan data
+Route::get('/show-all-product', [BarangController::class, 'read']);

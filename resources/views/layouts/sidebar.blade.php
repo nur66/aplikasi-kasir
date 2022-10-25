@@ -44,7 +44,11 @@
 
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+        <a href="{{ url('/show-all-product') }}" class="nav-link collapsed">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>Produk</span>
+        </a>
+        {{-- <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
             aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fas fa-fw fa-wrench"></i>
             <span>Produk</span>
@@ -58,7 +62,7 @@
                 <a class="collapse-item" href="utilities-animation.html">Animations</a>
                 <a class="collapse-item" href="utilities-other.html">Other</a>
             </div>
-        </div>
+        </div> --}}
     </li>
 
     <!-- Divider -->

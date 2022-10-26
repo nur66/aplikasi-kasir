@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\TransaksiPembelianBarangController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -63,6 +64,10 @@ Route::get('/delete-product/{id}', [BarangController::class, 'delete']);
 
 
 // Transaksi
+Route::get('/transaction', [TransaksiPembelianBarangController::class, 'show'])->name('transaction');
+Route::post('/store-transaction', [TransaksiPembelianBarangController::class, 'store'])->name('store-transaction');
 
+// show transaction
+Route::get('/show-transaction', [TransaksiPembelianBarangController::class, 'showTransaction'])->name('transaction');
 
 

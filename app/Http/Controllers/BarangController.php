@@ -14,11 +14,11 @@ class BarangController extends Controller
     {
         $result = [];
         $user = User::where('email', 'nuriswanto66@gmail.com');
-        
+
         $barang = Barang::all();
         $total = count($barang);
 
-        foreach($barang as $row){
+        foreach ($barang as $row) {
             $result[] = [
                 'id' => $row->id,
                 'namaBarang' => $row->nama_barang,
@@ -27,13 +27,12 @@ class BarangController extends Controller
                 'total' => $total
             ];
         }
-        
+
         // return view('crud.show_all_product', [
         //     'barang' => $result
         // ]);
 
         return view('crud.show_all_product')->with('barang', $result);
-
     }
 
     public function add(Request $request)
@@ -43,11 +42,40 @@ class BarangController extends Controller
 
     public function store(Request $request)
     {
-        if(Auth::user()){
-    
+        if (Auth::user()) {
+
             Barang::create([
                 'nama_barang' => $request->nama,
                 'harga_satuan' => $request->harga,
+            ]);
+            return redirect('/show-all-product');
+        } else {
+            return redirect('/');
+        }
+    }
+
+    public function edit(Request $request)
+    {
+        if (Auth::user()) {
+            $id = $request->id;
+
+            $result = Barang::where('id', $id)->get();
+
+            return view('crud.edit_product', [
+                'params_barang' => $result
+            ]);
+        } else {
+            return redirect('/');
+        }
+    }
+
+    public function editStore(Request $request)
+    {
+        if (Auth::user()) {
+
+            Barang::where('id', $request->id)->update([
+                'nama_barang' => $request->nama,
+                'harga_satuan' => $request->harga
             ]);
             return redirect('/show-all-product');
         } else {
@@ -60,17 +88,17 @@ class BarangController extends Controller
         $search = $request->input('search');
         $result = [];
 
-        if($search){
+        if ($search) {
             $barang = Barang::where('nama_barang', $search)
-                    ->orWhere('harga_satuan', $search)
-                    ->get();
-        }else{
+                ->orWhere('harga_satuan', $search)
+                ->get();
+        } else {
             $barang = Barang::all();
         }
 
         $total = count($barang);
 
-        foreach($barang as $row){
+        foreach ($barang as $row) {
             $result[] = [
                 'id' => $row->id,
                 'namaBarang' => $row->nama_barang,
@@ -81,6 +109,17 @@ class BarangController extends Controller
         }
 
         return view('crud.show_all_product')->with('barang', $result);
+    }
 
+    public function delete(Request $request)
+    {
+        if(Auth::user()){
+            $id = $request->id;
+            Barang::where('id',$id)->delete();
+
+            return redirect('/show-all-product');
+        } else {
+            return redirect('/');
+        }
     }
 }

@@ -204,77 +204,39 @@
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-        <div class="container-fluid">
+        {{-- @extends('layouts.app') 
 
-            <!-- Page Heading -->
-            {{-- <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-            <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-                For more information about DataTables, please visit the <a target="_blank"
-                    href="https://datatables.net">official DataTables documentation</a>.</p> --}}
-            <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 class="h3 mb-0 text-gray-800">PT. Velocity</h1>
-                <a href="add-product" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                        class="fas fa-download fa-sm text-white-50"></i> Tambah Produk</a>
-            </div>
+        @section('content') --}}
+        <div>
+            <div class="col-md-8">
+                <h1>Update Menu</h1>
+                <form action="{{ url('/edit-product') }}" method="post" enctype="multipart/form-data">
+                    @csrf
 
-            <!-- DataTales Example -->
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Daftar Nama Barang</h6>
-                </div>
+                    {{-- <?php dd($params_barang); ?> --}}
 
-                <div class="row justify-content-end my-3 mr-3">
-                    <form action="/show-all-product/search">
-                        <div class="input-group justify-content-end">
-                            <input type="text" class="form-control"
-                            placeholder="Search..."
-                            name="search"
-                            value="{{request('search')}}"
-                            >
-                            <button class="btn btn-primary" type="submit">Search</button>
+                    @foreach ($params_barang as $item)
+                        <input type="hidden" name="id" value="{{ $item->id }}">
+                        <div class="form-group">
+                            <label for="nama">Nama Barang</label>
+                            <input value="{{ $item->nama_barang }}" type="text" name="nama" id=""
+                                class="form-control" placeholder="nama barang..." required>
                         </div>
-                    </form>
-                </div>
-
-                <div class="mx-3">
-                    <table class="table table-striped table-bordered">
-                        <thead class="text-center">
-                            <tr>
-                                <th>Id</th>
-                                <th>Nama Barang</th>
-                                <th>Harga Satuan</th>
-                                <th>Tanggal Input</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tfoot class="text-center">
-                            <tr>
-                                <th>Id</th>
-                                <th>Nama Barang</th>
-                                <th>Harga Satuan</th>
-                                <th>Tanggal Input</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </tfoot>
-                        <tbody>
-                            @foreach ($barang as $item)
-                                <tr>
-                                    <td>{{ $item['id'] }}</td>
-                                    <td>{{ $item['namaBarang'] }}</td>
-                                    <td>{{ $item['harga'] }}</td>
-                                    <td>{{ $item['tanggal'] }}</td>
-                                    <td class="text-center">
-                                        <a href="{{ url('/edit-product') }}/{{ $item['id'] }}" class="btn btn-success">Ubah</a> &nbsp; 
-                                        <a href="{{ url('/delete-product') }}/{{ $item['id'] }}" class="btn btn-danger" onclick="return confirm('Apakah kamu yakin?');">Hapus</a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                        <div class="form-group">
+                            <label for="harga">Harga Satuan</label>
+                            <input value="{{ $item->harga_satuan }}" type="number" name="harga" id="" placeholder="0"
+                                class="form-control">
+                        </div>
+                        
+                    @endforeach
+                    
+                    <div class="input-group">
+                        <input type="submit" value="Update" class="btn btn-success"> &nbsp;
+                    </div>
+                </form>
             </div>
-
         </div>
+
         <!-- /.container-fluid -->
 
     </div>

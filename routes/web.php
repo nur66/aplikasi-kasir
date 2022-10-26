@@ -43,12 +43,26 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// Menampilkan view dan data
+// Product
+// Show
 Route::get('/show-all-product', [BarangController::class, 'read']);
 
-// Menampilkan view dan form add product
+// Add
 Route::get('/add-product', [BarangController::class, 'add']);
 Route::post('/store-product', [BarangController::class, 'store']);
 
 // Serch
 Route::get('/show-all-product/search', [BarangController::class, 'search'])->name('serch');
+
+// Edit
+Route::get('/edit-product/{id}', [BarangController::class, 'edit']);
+Route::post('/edit-product', [BarangController::class, 'editStore'])->name('edit');
+
+// Delete
+Route::get('/delete-product/{id}', [BarangController::class, 'delete']);
+
+
+// Transaksi
+
+
+

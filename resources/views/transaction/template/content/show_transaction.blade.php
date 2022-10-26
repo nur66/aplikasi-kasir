@@ -231,7 +231,7 @@
                     <td>{{ $data['qty'] }}</td>
                     <td>{{ $data['subtotal'] }}</td>
                     <td class="text-center">
-                        <a class="btn btn-danger btn-xs" href="?hapus={{ $data['id'] }}">
+                        <a class="btn btn-danger btn-xs" href="?hapus={{ $data['id_transaksi_pembelian'] }}">
                             <i class="fas fa-trash-alt fa-xs mr-1"></i>Hapus</a>
                     </td>
                 </tr>
@@ -242,22 +242,38 @@
         <div class="bg-light p-3" style="border-radius:0.25rem;">
             <div class="row gy-3 align-items-center row-home">
                 <div class="col-md-8 col-lg-6 mb-2">
-                    <form method="post" action="{{ url('/store-transaction-done') }}">
-                        <input type="hidden" id="totalCart" value="">
+                    <form method="post" action="{{ url('/store-transaction-inv') }}">
+                        @csrf
+                        <input type="hidden" id="totalCart" name="id_transaksi_pembelian" value={{$data['id_transaksi_pembelian']}}>
+                        <input type="hidden" id="totalCart" name="id_transaksi_pembelian_barang" value={{$data['id_transaksi_pembelian_barang']}}>
+                        {{-- <input type="hidden" id="totalCart" name="nama_barang" value={{$data['namaBarang']}}>
+                        <input type="hidden" id="totalCart" name="harga" value={{$data['harga']}}>
+                        <input type="hidden" id="totalCart" name="qty" value={{$data['qty']}}>
+                        <input type="hidden" id="totalCart" name="subtotal" value={{$data['subtotal']}}> --}}
                         <div class="row">
+
                             <label for="pembayaran"
                                 class="col-4 col-sm-4 col-md-4 col-lg-3 col-form-label col-form-label-sm mb-2">Pembayaran</label>
                             <div class="col-8 col-sm-8 col-md-8 col-lg-9 mb-2">
                                 <input type="text" name="pembayaran" onchange="procesBayar()"
                                     class="form-control form-control-sm" id="pembayaran" placeholder="0" required>
                             </div>
+
                             <label for="kembalian"
+                                class="col-4 col-sm-4 col-md-4 col-lg-3 col-form-label col-form-label-sm mb-2">Kembalian</label>
+                            <div class="col-8 col-sm-8 col-md-8 col-lg-9 mb-2">
+                                <input type="text" name="kembalian" onchange="procesBayar()"
+                                    class="form-control form-control-sm" id="pembayaran" placeholder="0" required>
+                            </div>
+
+                            {{-- <label for="kembalian"
                                 class="col-4 col-sm-4 col-md-4 col-lg-3 col-form-label col-form-label-sm mb-2">Kembalian</label>
                             <div class="col-8 col-sm-8 col-md-8 col-lg-9 mb-2">
                                 <input type="text" class="form-control form-control-sm bg-light" id="kembalian"
                                     placeholder="0">
                                 <input type="hidden" name="kembalian" id="kembalian1">
-                            </div>
+                            </div> --}}
+
                             <div class="col-sm-12 text-right">
                                 <div class="d-block d-sm-block d-md-none d-lg-none py-1"></div>
 

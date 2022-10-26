@@ -70,6 +70,6 @@ Route::post('/store-transaction', [TransaksiPembelianBarangController::class, 's
 // show transaction
 Route::get('/show-transaction', [TransaksiPembelianBarangController::class, 'showTransaction'])->name('transaction');
 
-Route::get('/store-transaction-inv', [TransaksiPembelianBarangController::class, 'storeInvoice'])->name('invoice');
+Route::post('/store-transaction-inv', [TransaksiPembelianBarangController::class, 'storeInvoice'])->name('invoice');
 
 

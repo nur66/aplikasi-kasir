@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barang;
+use App\Models\Invoice;
 use App\Models\TransaksiPembelian;
 use App\Models\TransaksiPembelianBarang;
 use Carbon\Carbon;
@@ -54,7 +55,8 @@ class TransaksiPembelianBarangController extends Controller
         $nama_barang = $transaksi_pembelian_barang->barang->nama_barang;
 
         $data = [
-            'id' => $transaksi_pembelian->id,
+            'id_transaksi_pembelian' => $transaksi_pembelian->id,
+            'id_transaksi_pembelian_barang' => $transaksi_pembelian_barang->id,
             'namaBarang' => $nama_barang,
             'harga' => $transaksi_pembelian_barang->harga_satuan,
             'qty' => $transaksi_pembelian_barang->jumlah,
@@ -66,6 +68,27 @@ class TransaksiPembelianBarangController extends Controller
 
     public function storeInvoice(Request $request)
     {
+        $no_invoice = 'hardcode_inv_num
+        ';
+        $tgl_invoice = Carbon::now();
+        $pembayaran = $request->pembayaran;
+        $kembalian = $request->kembalian;
+        $id_transaksi_pemebelian = $request->id_transaksi_pemebelian;
+        $id_transaksi_pemebelian_barang = $request->id_transaksi_pemebelian_barang;
+        $nama_barang = $request->nama_barang;
+        $harga = $request->harga;
+        $qty = $request->qty;
+        $subtotal = $request->subtotal;
+
+        $invoice = new Invoice();
+        $invoice->no_invoice = $no_invoice;
+        $invoice->tgl_invoice = $tgl_invoice;
+        $invoice->pembayaran = $pembayaran;
+        $invoice->kembalian = $kembalian;
+        $invoice->transaksi_pembelian_id = $id_transaksi_pemebelian;
+        $invoice->transaksi_pembelian_barang_id = $id_transaksi_pemebelian_barang;
+        $invoice->save();
         
+        return redirect('/home');
     }
 }

@@ -9,7 +9,7 @@ class Barang extends Model
 {
     use HasFactory;
     protected $table = 'barangs';
-    protected $guarded = []; // agar dapat diisi
+    protected $guarded = [];
 
     public function transaksi_pembelian_barang()
     {

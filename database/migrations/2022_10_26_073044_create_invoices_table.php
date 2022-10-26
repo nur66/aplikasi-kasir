@@ -19,7 +19,10 @@ return new class extends Migration
             $table->date('tgl_invoice');
             $table->double('pembayaran');
             $table->double('kembalian');
-            $table->string('status');
+            $table->foreignId('transaksi_pembelian_id')->nullable();
+            $table->foreignId('transaksi_pembelian_barang_id')->nullable();
+            $table->foreignId('barang_id')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

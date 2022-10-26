@@ -45,3 +45,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // Menampilkan view dan data
 Route::get('/show-all-product', [BarangController::class, 'read']);
+
+// Menampilkan view dan form add product
+Route::get('/add-product', [BarangController::class, 'add']);
+Route::post('/store-product', [BarangController::class, 'store']);
+
+// Serch
+Route::get('/show-all-product/search', [BarangController::class, 'search'])->name('serch');

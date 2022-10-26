@@ -63,4 +63,9 @@ class TransaksiPembelianBarangController extends Controller
 
         return view('transaction.show-transaction')->with('data', $data);
     }
+
+    public function storeInvoice(Request $request)
+    {
+        
+    }
 }

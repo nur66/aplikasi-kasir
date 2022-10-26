@@ -208,52 +208,6 @@
 
         @section('content') --}}
 
-        <form method="post" action="{{ url('/store-transaction-done') }}">
-            @csrf
-            <div class="row mx-3">
-
-                {{-- <div class="col-sm-4 col-md-4 col-lg-3 mb-3">
-                    <label class="small text-muted mb-1">Nama Produk</label>
-                    <input type="text" name="Cnproduk" id="nama_produk"
-                        placeholder="nama produk..."
-                        class="form-control form-control-sm bg-light" readonly>
-                </div> --}}
-
-                <div class="col-sm-4 col-md-4 col-lg-3 mb-3">
-                    <label class="small text-muted mb-1">Nama Barang</label>
-                    <select name="nama_barang" id="toko" class="form-control form-control-sm bg-light">
-                        {{-- @foreach ($data as $item)
-                            <option value="{{ $item['id'] }}">{{ $item->nama_barang }}</option>
-                        @endforeach --}}
-                    </select>
-                </div>
-
-                <div class="col-8 col-sm-4 col-md-4 col-lg-3 mb-3">
-                    <label class="small text-muted mb-1">Harga Satuan</label>
-                    <input type="number" name="harga" placeholder="0" id="harga_jual" onchange="InputSub()"
-                        {{-- class="form-control form-control-sm bg-light" readonly> --}}
-                        class="form-control form-control-sm bg-light">
-                </div>
-                <div class="col-4 col-sm-4 col-md-4 col-lg-3 mb-3">
-                    <label class="small text-muted mb-1">Qty</label>
-                    <input type="number" name="qty" id="Iqty" onchange="InputSub()" placeholder="0"
-                        class="form-control form-control-sm bg-light" required>
-                </div>
-                <div class="col-sm-8 col-md-8 col-lg-3 mb-3">
-                    <label class="small text-muted mb-1">Subtotal</label>
-                    <div class="input-group">
-                        <input type="number" name="total" placeholder="0" id="Isubtotal" onchange="InputSub()"
-                            class="form-control form-control-sm bg-light mr-2" readonly>
-                        <div class="input-group-append">
-                            <button type="reset" class="btn btn-danger btn-sm mr-2">Reset</button>
-                            <button type="submit" name="InputCart" class="btn btn-primary btn-sm">Simpan</button>
-                        </div>
-                    </div>
-                </div>
-
-            </div><!-- end row -->
-        </form>
-
         <table class="table table-striped table-sm table-bordered dt-responsive nowrap print-none" id="cart"
             width="100%">
             <thead>
@@ -268,22 +222,64 @@
             </thead>
             <tbody>
                 <?php $no = 1; ?>
-                {{-- @foreach($data as $item) --}}
+                {{-- @foreach ($data as $item) --}}
                 <tr>
-                    <td>{{ $no++; }}</td>
+                    <td>{{ $no++ }}</td>
                     {{-- <td>{{ $item['id'] }}</td> --}}
                     <td>{{ $data['namaBarang'] }}</td>
                     <td>{{ $data['harga'] }}</td>
                     <td>{{ $data['qty'] }}</td>
                     <td>{{ $data['subtotal'] }}</td>
                     <td class="text-center">
-                        <a class="btn btn-danger btn-xs" href="?hapus={{$data['id']}}">
+                        <a class="btn btn-danger btn-xs" href="?hapus={{ $data['id'] }}">
                             <i class="fas fa-trash-alt fa-xs mr-1"></i>Hapus</a>
                     </td>
                 </tr>
                 {{-- @endforeach --}}
             </tbody>
         </table>
+
+        <div class="bg-light p-3" style="border-radius:0.25rem;">
+            <div class="row gy-3 align-items-center row-home">
+                <div class="col-md-8 col-lg-6 mb-2">
+                    <form method="post" action="{{ url('/store-transaction-done') }}">
+                        <input type="hidden" id="totalCart" value="">
+                        <div class="row">
+                            <label for="pembayaran"
+                                class="col-4 col-sm-4 col-md-4 col-lg-3 col-form-label col-form-label-sm mb-2">Pembayaran</label>
+                            <div class="col-8 col-sm-8 col-md-8 col-lg-9 mb-2">
+                                <input type="text" name="pembayaran" onchange="procesBayar()"
+                                    class="form-control form-control-sm" id="pembayaran" placeholder="0" required>
+                            </div>
+                            <label for="kembalian"
+                                class="col-4 col-sm-4 col-md-4 col-lg-3 col-form-label col-form-label-sm mb-2">Kembalian</label>
+                            <div class="col-8 col-sm-8 col-md-8 col-lg-9 mb-2">
+                                <input type="text" class="form-control form-control-sm bg-light" id="kembalian"
+                                    placeholder="0">
+                                <input type="hidden" name="kembalian" id="kembalian1">
+                            </div>
+                            <div class="col-sm-12 text-right">
+                                <div class="d-block d-sm-block d-md-none d-lg-none py-1"></div>
+
+                                <a href=""
+                                    onclick="javascript:return confirm('Anda yakin ingin menghapus semua data keranjang ?');"
+                                    class="btn btn-danger btn-sm px-3 mr-2"><i class="fa fa-trash-alt mr-1"></i>Hapus
+                                    Semua</a>
+                                <button type="submit" name="import" class="btn btn-primary btn-sm px-3">
+                                    <i class="fa fa-check mr-1"></i>Simpan</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+
+                <div class="col-md-4 col-lg-6 mb-2 text-primary text-right">
+                    <p class="small text-muted mb-0">Total Item</p>
+                    <h3 class="mb-0" style="font-weight:600;">Rp. {{ $data['subtotal'] }}</h3>
+                </div>
+            </div>
+        </div>
+
 
 
         <!-- /.container-fluid -->
@@ -309,5 +305,24 @@
         var jumlah_beli = parseInt(document.getElementById('Iqty').value);
         var jumlah_harga = harga_jual * jumlah_beli;
         document.getElementById('Isubtotal').value = jumlah_harga;
+    };
+
+    function procesBayar() {
+        var harga_Cart = parseInt(document.getElementById('totalCart').value);
+        var pembayaran_Cart = parseInt(document.getElementById('pembayaran').value);
+        var kembali_Cart = pembayaran_Cart - harga_Cart;
+
+        var number_string = kembali_Cart.toString(),
+            sisa = number_string.length % 3,
+            rupiah1 = number_string.substr(0, sisa),
+            ribuan1 = number_string.substr(sisa).match(/\d{3}/gi);
+
+        if (ribuan1) {
+            separator1 = sisa ? '.' : '';
+            rupiah1 += separator1 + ribuan1.join('.');
+        }
+
+        document.getElementById('kembalian').value = rupiah1;
+        document.getElementById('kembalian1').value = kembali_Cart;
     };
 </script>

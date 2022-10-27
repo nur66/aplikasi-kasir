@@ -12,8 +12,7 @@
             </button>
 
             <!-- Topbar Search -->
-            <form
-                class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                 <div class="input-group">
                     <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
                         aria-label="Search" aria-describedby="basic-addon2">
@@ -40,8 +39,7 @@
                         <form class="form-inline mr-auto w-100 navbar-search">
                             <div class="input-group">
                                 <input type="text" class="form-control bg-light border-0 small"
-                                    placeholder="Search for..." aria-label="Search"
-                                    aria-describedby="basic-addon2">
+                                    placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" type="button">
                                         <i class="fas fa-search fa-sm"></i>
@@ -119,7 +117,8 @@
                         </h6>
                         <a class="dropdown-item d-flex align-items-center" href="#">
                             <div class="dropdown-list-image mr-3">
-                                <img class="rounded-circle" src="{{asset('startbootstrap-sb-admin-2')}}/img/undraw_profile_1.svg"
+                                <img class="rounded-circle"
+                                    src="{{ asset('startbootstrap-sb-admin-2') }}/img/undraw_profile_1.svg"
                                     alt="...">
                                 <div class="status-indicator bg-success"></div>
                             </div>
@@ -131,7 +130,8 @@
                         </a>
                         <a class="dropdown-item d-flex align-items-center" href="#">
                             <div class="dropdown-list-image mr-3">
-                                <img class="rounded-circle" src="{{asset('startbootstrap-sb-admin-2')}}/img/undraw_profile_2.svg"
+                                <img class="rounded-circle"
+                                    src="{{ asset('startbootstrap-sb-admin-2') }}/img/undraw_profile_2.svg"
                                     alt="...">
                                 <div class="status-indicator"></div>
                             </div>
@@ -143,7 +143,8 @@
                         </a>
                         <a class="dropdown-item d-flex align-items-center" href="#">
                             <div class="dropdown-list-image mr-3">
-                                <img class="rounded-circle" src="{{asset('startbootstrap-sb-admin-2')}}/img/undraw_profile_3.svg"
+                                <img class="rounded-circle"
+                                    src="{{ asset('startbootstrap-sb-admin-2') }}/img/undraw_profile_3.svg"
                                     alt="...">
                                 <div class="status-indicator bg-warning"></div>
                             </div>
@@ -177,7 +178,7 @@
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                         <img class="img-profile rounded-circle"
-                            src="{{asset('startbootstrap-sb-admin-2')}}/img/undraw_profile.svg">
+                            src="{{ asset('startbootstrap-sb-admin-2') }}/img/undraw_profile.svg">
                     </a>
                     <!-- Dropdown - User Information -->
                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -213,22 +214,22 @@
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                        class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                        class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> --}}
             </div>
 
-            <!-- Content Row -->
+            <!-- Card -->
             <div class="row">
 
-                <!-- Earnings (Monthly) Card Example -->
+                <!-- Terjual -->
                 <div class="col-xl-3 col-md-6 mb-4">
                     <div class="card border-left-primary shadow h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                        Earnings (Monthly)</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                        Terjual</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $data['Terjual'] }}</div>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -238,15 +239,15 @@
                     </div>
                 </div>
 
-                <!-- Earnings (Monthly) Card Example -->
+                <!-- Penjualan -->
                 <div class="col-xl-3 col-md-6 mb-4">
                     <div class="card border-left-success shadow h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                        Earnings (Annual)</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                        Penjualan</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $data['Penjualan'] }}</div>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -256,26 +257,15 @@
                     </div>
                 </div>
 
-                <!-- Earnings (Monthly) Card Example -->
+                <!-- Pembayaran -->
                 <div class="col-xl-3 col-md-6 mb-4">
                     <div class="card border-left-info shadow h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
-                                    </div>
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col-auto">
-                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="progress progress-sm mr-2">
-                                                <div class="progress-bar bg-info" role="progressbar"
-                                                    style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                                    aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                        Pembayaran</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $data['Pembayaran'] }}</div>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
@@ -285,18 +275,19 @@
                     </div>
                 </div>
 
-                <!-- Pending Requests Card Example -->
+                <!-- Best Seller -->
                 <div class="col-xl-3 col-md-6 mb-4">
                     <div class="card border-left-warning shadow h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                        Pending Requests</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                        Best Seller</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $data['Best_seller'] }}
+                                    </div>
                                 </div>
                                 <div class="col-auto">
-                                    <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                    <i class="fas fa-duotone fa-star text-gray-300"></i>
                                 </div>
                             </div>
                         </div>
@@ -307,77 +298,73 @@
             <!-- Content Row -->
 
             <div class="row">
-
-                <!-- Area Chart -->
-                <div class="col-xl-8 col-lg-7">
-                    <div class="card shadow mb-4">
-                        <!-- Card Header - Dropdown -->
-                        <div
-                            class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
-                            <div class="dropdown no-arrow">
-                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                    aria-labelledby="dropdownMenuLink">
-                                    <div class="dropdown-header">Dropdown Header:</div>
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Card Body -->
-                        <div class="card-body">
-                            <div class="chart-area">
-                                <canvas id="myAreaChart"></canvas>
-                            </div>
-                        </div>
+                <div class="card shadow mb-4 col-xl-12 col-md-12 col-sm-12 mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Invoice</h6>
                     </div>
-                </div>
 
-                <!-- Pie Chart -->
-                <div class="col-xl-4 col-lg-5">
-                    <div class="card shadow mb-4">
-                        <!-- Card Header - Dropdown -->
-                        <div
-                            class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
-                            <div class="dropdown no-arrow">
-                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                    aria-labelledby="dropdownMenuLink">
-                                    <div class="dropdown-header">Dropdown Header:</div>
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
+                    <div class="row justify-content-end my-3 mr-3">
+                        <form action="/show-all-transaction/search">
+                            <div class="input-group justify-content-end">
+                                <input type="text" class="form-control" placeholder="Search..." name="search"
+                                    value="{{ request('search') }}">
+                                <button class="btn btn-primary" type="submit">Search</button>
                             </div>
-                        </div>
-                        <!-- Card Body -->
-                        <div class="card-body">
-                            <div class="chart-pie pt-4 pb-2">
-                                <canvas id="myPieChart"></canvas>
-                            </div>
-                            <div class="mt-4 text-center small">
-                                <span class="mr-2">
-                                    <i class="fas fa-circle text-primary"></i> Direct
-                                </span>
-                                <span class="mr-2">
-                                    <i class="fas fa-circle text-success"></i> Social
-                                </span>
-                                <span class="mr-2">
-                                    <i class="fas fa-circle text-info"></i> Referral
-                                </span>
-                            </div>
-                        </div>
+                        </form>
+                    </div>
+
+                    <div class="mx-3">
+                        <table class="table table-striped table-bordered">
+                            <thead class="text-center">
+                                <tr>
+                                    <th>No</th>
+                                    <th>Invoice</th>
+                                    <th>Qty</th>
+                                    <th>Subtotal</th>
+                                    <th>Pembayaran</th>
+                                    <th>Kembalian</th>
+                                    <th>Tanggal</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tfoot class="text-center">
+                                <tr>
+                                    <th>No</th>
+                                    <th>Invoice</th>
+                                    <th>Qty</th>
+                                    <th>Subtotal</th>
+                                    <th>Pembayaran</th>
+                                    <th>Kembalian</th>
+                                    <th>Tanggal</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                {{-- <?php dd($data['data']); ?> --}}
+                                <?php $no = 1; ?>
+                                @foreach ($data['data'] as $item)
+                                    <tr>
+                                        <td>{{ $no++ }}</td>
+                                        <td>{{ $item['no_invoice'] }}</td>
+                                        <td>{{ $item['qty'] }}</td>
+                                        <td>{{ $item['subtotal'] }}</td>
+                                        <td>{{ $item['pembayaran'] }}</td>
+                                        <td>{{ $item['kembalian'] }}</td>
+                                        <td>{{ $item['tanggal'] }}</td>
+                                        <td class="text-center">
+                                            {{-- <a href="{{ url('/print-invoice') }}/{{ $item['id'] }}" class="btn btn-success">Cetak</a>  --}}
+                                            {{-- <button type="button" class="btn btn-primary btn-sm px-3"
+                                                onclick="document.title='Invoice#{{ $item['no_invoice'] }}';window.print()">
+                                                Cetak</button> --}}
+                                            &nbsp;
+                                            <a href="{{ url('/delete-invoice') }}/{{ $item['id'] }}"
+                                                class="btn btn-danger btn-sm px-3"
+                                                onclick="return confirm('Apakah kamu yakin ingin menghapus invoice ini?');">Hapus</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -394,26 +381,26 @@
                             <h6 class="m-0 font-weight-bold text-primary">Projects</h6>
                         </div>
                         <div class="card-body">
-                            <h4 class="small font-weight-bold">Server Migration <span
-                                    class="float-right">20%</span></h4>
+                            <h4 class="small font-weight-bold">Server Migration <span class="float-right">20%</span>
+                            </h4>
                             <div class="progress mb-4">
                                 <div class="progress-bar bg-danger" role="progressbar" style="width: 20%"
                                     aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
-                            <h4 class="small font-weight-bold">Sales Tracking <span
-                                    class="float-right">40%</span></h4>
+                            <h4 class="small font-weight-bold">Sales Tracking <span class="float-right">40%</span>
+                            </h4>
                             <div class="progress mb-4">
                                 <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
                                     aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
-                            <h4 class="small font-weight-bold">Customer Database <span
-                                    class="float-right">60%</span></h4>
+                            <h4 class="small font-weight-bold">Customer Database <span class="float-right">60%</span>
+                            </h4>
                             <div class="progress mb-4">
-                                <div class="progress-bar" role="progressbar" style="width: 60%"
-                                    aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60"
+                                    aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
-                            <h4 class="small font-weight-bold">Payout Details <span
-                                    class="float-right">80%</span></h4>
+                            <h4 class="small font-weight-bold">Payout Details <span class="float-right">80%</span>
+                            </h4>
                             <div class="progress mb-4">
                                 <div class="progress-bar bg-info" role="progressbar" style="width: 80%"
                                     aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
@@ -507,10 +494,11 @@
                         <div class="card-body">
                             <div class="text-center">
                                 <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                                    src="{{asset('startbootstrap-sb-admin-2')}}/img/undraw_posting_photo.svg" alt="...">
+                                    src="{{ asset('startbootstrap-sb-admin-2') }}/img/undraw_posting_photo.svg"
+                                    alt="...">
                             </div>
-                            <p>Add some quality, svg illustrations to your project courtesy of <a
-                                    target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a
+                            <p>Add some quality, svg illustrations to your project courtesy of <a target="_blank"
+                                    rel="nofollow" href="https://undraw.co/">unDraw</a>, a
                                 constantly updated collection of beautiful svg images that you can use
                                 completely free and without attribution!</p>
                             <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
@@ -540,6 +528,80 @@
 
     </div>
     <!-- End of Main Content -->
+
+    {{-- Invoice --}}
+
+    {{-- <div id="print">
+        <div class="col-lg-6 col-md-6 col-sm-6 pt-5 px-5 print-show justify-content-center">
+            <div class="container">
+                <div class="text-center mb-5 pt-2">
+                    <h2 class="mb-3" style="font-size:60px;">Nur Shop</h2>
+                    <h2 class="mb-0">Tiban MC Dermott</h2>
+                    <h2 class="mb-4">Telp : 081261518980</h2>
+                </div>
+                <h2 class="mb-1">Invoice : 123
+                    <span class="float-right">Kasir : Nur Iswanto</span>
+                </h2>
+                <h2 class="mb-1">Tanggal : 123</h2>
+                <div class="row">
+                    <div class="col-12 py-3 my-3 border-top border-bottom">
+                        <div class="row">
+                            <div class="col-5">
+                                <h2 class="mb-0 py-1" style="font-weight:700;">Description</h2>
+                            </div>
+                            <div class="col-2">
+                                <h2 class="mb-0 py-1" style="font-weight:700;">Harga</h2>
+                            </div>
+                            <div class="col-2">
+                                <h2 class="mb-0 py-1" style="font-weight:700;">Qty</h2>
+                            </div>
+                            <div class="col-3">
+                                <h2 class="mb-0 py-1" style="font-weight:700;">Jumlah</h2>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-5">
+                                <h2 class="mb-0 py-1" style="font-weight:500;">123</h2>
+                            </div>
+                            <div class="col-2">
+                                <h2 class="mb-0 py-1" style="font-weight:500;">123</h2>
+                            </div>
+                            <div class="col-2">
+                                <h2 class="mb-0 py-1" style="font-weight:500;">123</h2>
+                            </div>
+                            <div class="col-3">
+                                <h2 class="mb-0 py-1" style="font-weight:500;">123</h2>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 py-3 my-3 border-top">
+                        <div class="row justify-content-end">
+
+                            <div class="col-3 text-right border-bottom">
+                                <h2 class="mb-1" style="font-weight:700;">Total <span class="ml-3">:</span></h2>
+                                <h2 class="mb-1" style="font-weight:500;">Tunai <span class="ml-3">:</span></h2>
+                                <h2 class="mb-1" style="font-weight:500;">Kembali <span class="ml-3">:</span>
+                                </h2>
+                            </div>
+                            <div class="col-3 border-bottom">
+                                <h2 class="mb-1" style="font-weight:700;">123</h2>
+                                <h2 class="mb-1" style="font-weight:500;">123</h2>
+                                <h2 class="mb-1" style="font-weight:500;">123</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 text-center mt-5">
+                        <h2>* Terima Kasih Telah Berbelanja Di Nur Shop *</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> --}}
+    {{-- Invoice --}}
 
     <!-- Footer -->
     <footer class="sticky-footer bg-white">

@@ -23,4 +23,5 @@
     <!-- Custom styles for this page -->
     <link href="{{asset('startbootstrap-sb-admin-2')}}/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head>

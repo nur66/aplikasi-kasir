@@ -221,7 +221,7 @@
 
                 <div class="col-sm-4 col-md-4 col-lg-3 mb-3">
                     <label class="small text-muted mb-1">Nama Barang</label>
-                    <select name="nama_barang" id="toko" class="form-control form-control-sm bg-light">
+                    <select name="nama_barang" id="barang" class="form-control form-control-sm bg-light">
                         @foreach ($barang as $item)
                             <option value="{{ $item->id }}">{{ $item->nama_barang }}</option>
                         @endforeach
@@ -271,7 +271,24 @@
 </div>
 
 <script type="text/javascript">
+    // worked
+    $(function() {
+        $("#barang").change(function() {
+            var displaybarang = $("#barang option:selected").text();
+
+            $("#harga_jual").val(displaybarang);
+        })
+    })
+
+    function changeValue(kode_produk) {
+        document.getElementById("nama_produk").value = nama_produk[kode_produk].nama_produk;
+        document.getElementById("harga_jual").value = harga_jual[kode_produk].harga_jual;
+        document.getElementById("harga_modal").value = harga_modal[kode_produk].harga_modal;
+    };
+
     function InputSub() {
+        // var harga_jual = parseInt(document.getElementById('harga_jual').value);
+        // var jumlah_beli = parseInt(document.getElementById('Iqty').value);
         var harga_jual = parseInt(document.getElementById('harga_jual').value);
         var jumlah_beli = parseInt(document.getElementById('Iqty').value);
         var jumlah_harga = harga_jual * jumlah_beli;

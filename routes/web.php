@@ -42,7 +42,10 @@ Route::get('/not-found', function () {
 
 Auth::routes();
 
+// Laporan & Invoice
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/print-invoice/{id}', [App\Http\Controllers\HomeController::class, 'print'])->name('home');
+Route::get('/delete-invoice/{id}', [App\Http\Controllers\HomeController::class, 'delete'])->name('home');
 
 // Product
 // Show

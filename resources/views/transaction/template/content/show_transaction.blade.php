@@ -244,12 +244,14 @@
                 <div class="col-md-8 col-lg-6 mb-2">
                     <form method="post" action="{{ url('/store-transaction-inv') }}">
                         @csrf
-                        <input type="hidden" id="totalCart" name="id_transaksi_pembelian" value={{$data['id_transaksi_pembelian']}}>
-                        <input type="hidden" id="totalCart" name="id_transaksi_pembelian_barang" value={{$data['id_transaksi_pembelian_barang']}}>
-                        {{-- <input type="hidden" id="totalCart" name="nama_barang" value={{$data['namaBarang']}}>
-                        <input type="hidden" id="totalCart" name="harga" value={{$data['harga']}}>
-                        <input type="hidden" id="totalCart" name="qty" value={{$data['qty']}}>
-                        <input type="hidden" id="totalCart" name="subtotal" value={{$data['subtotal']}}> --}}
+                        {{-- <?php dd($data['id_transaksi_pembelian']); ?> --}}
+                        {{-- <input type="hidden" name="id" value="{{ $item->id }}"> --}}
+                        <input type="hidden" id="#" name="id_transaksi_pembelian"
+                            value="{{ $data['id_transaksi_pembelian'] }}">
+                        <input type="hidden" id="#" name="id_transaksi_pembelian_barang"
+                            value="{{ $data['id_transaksi_pembelian_barang'] }}"">
+                        <input type="hidden" id="totalCart" name="total_harga" value="{{ $data['subtotal'] }}"">
+
                         <div class="row">
 
                             <label for="pembayaran"
@@ -263,7 +265,7 @@
                                 class="col-4 col-sm-4 col-md-4 col-lg-3 col-form-label col-form-label-sm mb-2">Kembalian</label>
                             <div class="col-8 col-sm-8 col-md-8 col-lg-9 mb-2">
                                 <input type="text" name="kembalian" onchange="procesBayar()"
-                                    class="form-control form-control-sm" id="pembayaran" placeholder="0" required>
+                                    class="form-control form-control-sm" id="kembalian" placeholder="0" required>
                             </div>
 
                             {{-- <label for="kembalian"
@@ -315,30 +317,40 @@
 
 </div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script type="text/javascript">
-    function InputSub() {
-        var harga_jual = parseInt(document.getElementById('harga_jual').value);
-        var jumlah_beli = parseInt(document.getElementById('Iqty').value);
-        var jumlah_harga = harga_jual * jumlah_beli;
-        document.getElementById('Isubtotal').value = jumlah_harga;
-    };
+    // Nur - worked - tapi tidak auto
+    // $(function Kembalian() {
+    //     $("#pembayaran").change(function() {
+    //         var harga_Cart = parseInt(document.getElementById('totalCart').value);
+    //         var pembayaran_Cart = parseInt(document.getElementById('pembayaran').value);
+    //         var kembali_Cart = pembayaran_Cart - harga_Cart;
 
+    //         var displaykembalian = kembali_Cart;
+
+    //         $("#kembalian").val(displaykembalian);
+    //     })
+    // })
+
+    // worked
     function procesBayar() {
         var harga_Cart = parseInt(document.getElementById('totalCart').value);
         var pembayaran_Cart = parseInt(document.getElementById('pembayaran').value);
         var kembali_Cart = pembayaran_Cart - harga_Cart;
 
-        var number_string = kembali_Cart.toString(),
-            sisa = number_string.length % 3,
-            rupiah1 = number_string.substr(0, sisa),
-            ribuan1 = number_string.substr(sisa).match(/\d{3}/gi);
+        // Nur - Not Worked
+        // var number_string = kembali_Cart.toString();
+        //     sisa = number_string.length % 3,
+        //     rupiah1 = number_string.substr(0, sisa),
+        //     ribuan1 = number_string.substr(sisa).match(/\d{3}/gi);
 
-        if (ribuan1) {
-            separator1 = sisa ? '.' : '';
-            rupiah1 += separator1 + ribuan1.join('.');
-        }
+        // if (ribuan1) {
+        //     separator1 = sisa ? '.' : '';
+        //     rupiah1 += separator1 + ribuan1.join('.');
+        // }
 
-        document.getElementById('kembalian').value = rupiah1;
+        document.getElementById('kembalian').value = kembali_Cart;
+        // document.getElementById('kembalian').value = rupiah1;
         document.getElementById('kembalian1').value = kembali_Cart;
     };
 </script>

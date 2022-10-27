@@ -73,12 +73,12 @@ class TransaksiPembelianBarangController extends Controller
         $tgl_invoice = Carbon::now();
         $pembayaran = $request->pembayaran;
         $kembalian = $request->kembalian;
-        $id_transaksi_pemebelian = $request->id_transaksi_pemebelian;
-        $id_transaksi_pemebelian_barang = $request->id_transaksi_pemebelian_barang;
-        $nama_barang = $request->nama_barang;
-        $harga = $request->harga;
-        $qty = $request->qty;
-        $subtotal = $request->subtotal;
+        $id_transaksi_pemebelian = $request->id_transaksi_pembelian;
+        $id_transaksi_pemebelian_barang = $request->id_transaksi_pembelian_barang;
+        
+        $trans_p_barang = TransaksiPembelianBarang::with('barang')->where('id',$id_transaksi_pemebelian_barang)->first();
+        $id_barang = $trans_p_barang->barang->id;
+
 
         $invoice = new Invoice();
         $invoice->no_invoice = $no_invoice;
@@ -87,6 +87,7 @@ class TransaksiPembelianBarangController extends Controller
         $invoice->kembalian = $kembalian;
         $invoice->transaksi_pembelian_id = $id_transaksi_pemebelian;
         $invoice->transaksi_pembelian_barang_id = $id_transaksi_pemebelian_barang;
+        $invoice->barang_id = $id_barang;
         $invoice->save();
         
         return redirect('/home');

@@ -20,4 +20,9 @@ class TransaksiPembelianBarang extends Model
     {
         return $this->belongsTo(Barang::class);
     }
+
+    public function invoice()
+    {
+        return $this->hasMany(Invoice::class);
+    }
 }

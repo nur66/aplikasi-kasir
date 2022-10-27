@@ -15,4 +15,9 @@ class TransaksiPembelian extends Model
     {
         return $this->hasMany(TransaksiPembelianBarang::class);
     }
+
+    public function invoice()
+    {
+        return $this->hasMany(Invoice::class);
+    }
 }

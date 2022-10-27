@@ -247,7 +247,11 @@
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                         Penjualan</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $data['Penjualan'] }}</div>
+                                    <?php if($data['Penjualan']){
+                                        $dataPenjualan = 0;
+                                        $dataPenjualan = number_format($data['Penjualan']);  
+                                    } ?>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $dataPenjualan }}</div>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -265,7 +269,11 @@
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                         Pembayaran</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $data['Pembayaran'] }}</div>
+                                        <?php if($data['Penjualan']){
+                                            $dataPembayaran = 0;
+                                            $dataPembayaran = number_format($data['Pembayaran']);  
+                                        } ?>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $dataPembayaran }}</div>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
@@ -347,9 +355,9 @@
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $item['no_invoice'] }}</td>
                                         <td>{{ $item['qty'] }}</td>
-                                        <td>{{ $item['subtotal'] }}</td>
-                                        <td>{{ $item['pembayaran'] }}</td>
-                                        <td>{{ $item['kembalian'] }}</td>
+                                        <td>{{ number_format($item['subtotal']) }}</td>
+                                        <td>{{ number_format($item['pembayaran']) }}</td>
+                                        <td>{{ number_format($item['kembalian']) }}</td>
                                         <td>{{ $item['tanggal'] }}</td>
                                         <td class="text-center">
                                             {{-- <a href="{{ url('/print-invoice') }}/{{ $item['id'] }}" class="btn btn-success">Cetak</a>  --}}

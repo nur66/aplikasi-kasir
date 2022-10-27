@@ -21,8 +21,6 @@
                                             class="form-control form-control-user @error('name') is-invalid @enderror"
                                             name="name" value="{{ old('name') }}" required autocomplete="name"
                                             autofocus placeholder="Name">
-                                        {{-- <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                            placeholder="First Name"> --}}
                                         @error('name')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -40,14 +38,9 @@
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
-                                        {{-- <input type="text" class="form-control form-control-user" id="exampleLastName"
-                                            placeholder="Last Name"> --}}
                                     </div>
                                 </div>
-                                {{-- <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                                        placeholder="Email Address">
-                                </div> --}}
+                                
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input id="password" type="password"
@@ -60,18 +53,19 @@
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
-                                        {{-- <input type="password" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="Password"> --}}
+                                        
                                     </div>
                                     <div class="col-sm-6">
                                         <input id="password-confirm" type="password" class="form-control form-control-user" name="password_confirmation" required autocomplete="new-password" placeholder="Repeat Password">
-                                        {{-- <input type="password" class="form-control form-control-user"
-                                            id="exampleRepeatPassword" placeholder="Repeat Password"> --}}
+                                        
                                     </div>
                                 </div>
-                                <a href="/login" class="btn btn-primary btn-user btn-block">
+                                {{-- <a href="/login" class="btn btn-primary btn-user btn-block">
                                     Register Account
-                                </a>
+                                </a> --}}
+                                <button type="submit" class="btn btn-primary btn-user btn-block">
+                                    {{ __('Register') }}
+                                </button>
                                 <hr>
                                 <a href="index.html" class="btn btn-google btn-user btn-block">
                                     <i class="fab fa-google fa-fw"></i> Register with Google
@@ -82,7 +76,7 @@
                             </form>
                             <hr>
                             <div class="text-center">
-                                <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                <a class="small" href="/forgot-password">Forgot Password?</a>
                             </div>
                             <div class="text-center">
                                 <a class="small" href="/login">Already have an account? Login!</a>

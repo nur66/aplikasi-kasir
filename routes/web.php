@@ -76,3 +76,4 @@ Route::get('/show-transaction', [TransaksiPembelianBarangController::class, 'sho
 Route::post('/store-transaction-inv', [TransaksiPembelianBarangController::class, 'storeInvoice'])->name('invoice');
 
 
+

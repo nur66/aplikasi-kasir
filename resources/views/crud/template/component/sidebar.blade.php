@@ -82,9 +82,19 @@
 
     <!-- Nav Item - Tables -->
     <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        {{-- <a class="nav-link" href="tables.html">
             <i class="fas fa-fw fa-table"></i>
-            <span>Keluar</span></a>
+            <span>Keluar</span></a> --}}
+        <a class="nav-link" href="{{ route('logout') }}"
+            onclick="event.preventDefault();
+            document.getElementById('logout-form').submit();">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Keluar</span>
+        </a>
+
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+            @csrf
+        </form>
     </li>
 
     <!-- Divider -->
@@ -97,8 +107,10 @@
 
     <!-- Sidebar Message -->
     <div class="sidebar-card d-none d-lg-flex">
-        <img class="sidebar-card-illustration mb-2" src="{{asset('startbootstrap-sb-admin-2')}}/img/undraw_rocket.svg" alt="...">
-        <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
+        <img class="sidebar-card-illustration mb-2" src="{{ asset('startbootstrap-sb-admin-2') }}/img/undraw_rocket.svg"
+            alt="...">
+        <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!
+        </p>
         <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
     </div>
 

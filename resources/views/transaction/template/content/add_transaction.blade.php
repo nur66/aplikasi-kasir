@@ -203,21 +203,9 @@
         </nav>
         <!-- End of Topbar -->
 
-        <!-- Begin Page Content -->
-        {{-- @extends('layouts.app') 
-
-        @section('content') --}}
-
         <form method="post" action="{{ url('/store-transaction') }}">
             @csrf
             <div class="row mx-3">
-
-                {{-- <div class="col-sm-4 col-md-4 col-lg-3 mb-3">
-                    <label class="small text-muted mb-1">Nama Produk</label>
-                    <input type="text" name="Cnproduk" id="nama_produk"
-                        placeholder="nama produk..."
-                        class="form-control form-control-sm bg-light" readonly>
-                </div> --}}
 
                 <div class="col-sm-4 col-md-4 col-lg-3 mb-3">
                     <label class="small text-muted mb-1">Nama Barang</label>

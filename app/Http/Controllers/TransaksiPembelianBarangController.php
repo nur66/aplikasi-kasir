@@ -8,6 +8,7 @@ use App\Models\TransaksiPembelian;
 use App\Models\TransaksiPembelianBarang;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TransaksiPembelianBarangController extends Controller
 {
@@ -68,15 +69,18 @@ class TransaksiPembelianBarangController extends Controller
 
     public function storeInvoice(Request $request)
     {
-        $no_invoice = 'hardcode_inv_num
-        ';
+        $dateNow = Carbon::parse(now())->format('ymd');
+        $string = 'NUR'.$dateNow.'-'.mt_rand(10,100);
+
+        $no_invoice = $string;
+        // $no_invoice = 'hardcode_inv_num';
         $tgl_invoice = Carbon::now();
         $pembayaran = $request->pembayaran;
         $kembalian = $request->kembalian;
         $id_transaksi_pemebelian = $request->id_transaksi_pembelian;
         $id_transaksi_pemebelian_barang = $request->id_transaksi_pembelian_barang;
-        
-        $trans_p_barang = TransaksiPembelianBarang::with('barang')->where('id',$id_transaksi_pemebelian_barang)->first();
+
+        $trans_p_barang = TransaksiPembelianBarang::with('barang')->where('id', $id_transaksi_pemebelian_barang)->first();
         $id_barang = $trans_p_barang->barang->id;
 
 
@@ -89,7 +93,88 @@ class TransaksiPembelianBarangController extends Controller
         $invoice->transaksi_pembelian_barang_id = $id_transaksi_pemebelian_barang;
         $invoice->barang_id = $id_barang;
         $invoice->save();
-        
+
         return redirect('/home');
+    }
+
+    // public function searchTransaction(Request $request)
+    // {
+    //     $search = $request->input('search');
+    //     $result = [];
+
+    //     if ($search) {
+    //         $invoice = Invoice::where('no_invoice', 'like', "%{$search}%")
+    //             ->orWhere('tgl_invoice', 'LIKE',  "%{$search}%")
+    //             ->orWhere('pembayaran', 'LIKE',  "%{$search}%")
+    //             ->orWhere('kembalian', 'LIKE',  "%{$search}%")
+    //             ->get();
+    //     } else {
+    //         $invoice = Invoice::all();
+    //     }
+
+    //     $total = count($invoice);
+
+    //     foreach ($invoice as $row) {
+    //         $result[] = [
+    //             'id' => $row->id,
+    //             'namaBarang' => $row->nama_barang,
+    //             'harga' => $row->harga_satuan,
+    //             'tanggal' => $row->created_at,
+    //             'total' => $total
+    //         ];
+    //     }
+
+    //     return view('layouts.master')->with('data', $result);
+    // }
+
+    public function searchTransaction(Request $request)
+    {
+        $result = $data = [];
+        $search = $request->input('search');
+
+        $inv = Invoice::with([
+            'transaksi_pembelian', 'transaksi_pembelian_barang', 'barang'
+        ])->where('no_invoice', 'like', "%{$search}%")
+        ->orWhere('tgl_invoice', 'LIKE',  "%{$search}%")
+        ->orWhere('pembayaran', 'LIKE',  "%{$search}%")
+        ->orWhere('kembalian', 'LIKE',  "%{$search}%")
+        ->get();
+
+
+        if(count($inv) == 0){
+            return view('not_found');
+        }
+
+        // Card
+        $pembayaran = $penjualan = $terjual = 0;
+        foreach ($inv as $row) {
+            $terjual += $row->transaksi_pembelian_barang->jumlah;
+            $penjualan += $row->transaksi_pembelian->total_harga;
+            $pembayaran += $row->pembayaran;
+
+            $data[] = [
+                'id' => $row->id,
+                'no_invoice' => $row->no_invoice,
+                'qty' => $row->transaksi_pembelian_barang->jumlah,
+                'subtotal' => $row->transaksi_pembelian->total_harga,
+                'pembayaran' => $row->pembayaran,
+                'kembalian' => $row->kembalian,
+                'tanggal' => $row->tgl_invoice
+            ];
+        }
+
+        $best_seller = "SELECT nama_barang FROM barangs WHERE id IN (SELECT barang_id FROM transaksi_pembelian_barangs GROUP BY barang_id ORDER BY COUNT(barang_id) DESC) LIMIT 1";
+        $best_seller = DB::select($best_seller);
+        $best_seller = $best_seller[0]->nama_barang;
+
+        $result = [
+            'Terjual' => $terjual,
+            'Penjualan' => $penjualan,
+            'Pembayaran' => $pembayaran,
+            'Best_seller' => $best_seller,
+            'data' => $data
+        ];
+
+        return view('layouts.master')->with('data', $result);
     }
 }

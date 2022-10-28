@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TransaksiPembelianBarangController;
 use Illuminate\Support\Facades\Route;
 
@@ -72,6 +73,7 @@ Route::post('/store-transaction', [TransaksiPembelianBarangController::class, 's
 
 // show transaction
 Route::get('/show-transaction', [TransaksiPembelianBarangController::class, 'showTransaction'])->name('transaction');
+Route::get('/show-all-transaction/search', [TransaksiPembelianBarangController::class, 'searchTransaction']);
 
 Route::post('/store-transaction-inv', [TransaksiPembelianBarangController::class, 'storeInvoice'])->name('invoice');
 

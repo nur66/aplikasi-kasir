@@ -89,8 +89,8 @@ class BarangController extends Controller
         $result = [];
 
         if ($search) {
-            $barang = Barang::where('nama_barang', $search)
-                ->orWhere('harga_satuan', $search)
+            $barang = Barang::where('nama_barang', 'like', "%{$search}%")
+                ->orWhere('harga_satuan', 'LIKE',  "%{$search}%")
                 ->get();
         } else {
             $barang = Barang::all();

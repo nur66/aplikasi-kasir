@@ -53,7 +53,11 @@ class HomeController extends Controller
 
         $best_seller = "SELECT nama_barang FROM barangs WHERE id IN (SELECT barang_id FROM transaksi_pembelian_barangs GROUP BY barang_id ORDER BY COUNT(barang_id) DESC) LIMIT 1";
         $best_seller = DB::select($best_seller);
-        $best_seller = $best_seller[0]->nama_barang;
+        if(count($best_seller) > 0){
+            $best_seller = $best_seller[0]->nama_barang;
+        }else{
+            $best_seller = null;
+        }
 
         $result = [
             'Terjual' => $terjual,
@@ -62,6 +66,7 @@ class HomeController extends Controller
             'Best_seller' => $best_seller,
             'data' => $data
         ];
+
 
         return view('layouts.master')->with('data', $result);
     }
@@ -94,4 +99,5 @@ class HomeController extends Controller
             return redirect('/');
         }
     }
+
 }

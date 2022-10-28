@@ -41,6 +41,8 @@
         </div>
     </div>
 
+    
+
     <!-- Bootstrap core JavaScript-->
     <script src="{{asset('startbootstrap-sb-admin-2')}}/vendor/jquery/jquery.min.js"></script>
     <script src="{{asset('startbootstrap-sb-admin-2')}}/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
